@@ -165,8 +165,6 @@ class ProcessData(nn.Module):
             ], dtype=torch.long, device=data_batch["image"].device) # [b, num_target_views]
 
         else:
-            num_target_views = 3
-            num_views = 5
             assert (
                 self.config.training.num_input_views + num_target_views <= num_views
             ), f"We have {num_views} views in total, but we want to select {self.config.training.num_input_views} input views and {num_target_views} target views. This is more than the total number of views we have."
