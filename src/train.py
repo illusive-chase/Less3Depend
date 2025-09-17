@@ -14,11 +14,6 @@ from tqdm import tqdm
 import numpy as np
 import random
 
-def seed_worker(worker_id):
-    worker_seed = torch.initial_seed() % 2**32
-    np.random.seed(worker_seed)
-    random.seed(worker_seed)
-
 # Load config and read(override) arguments from CLI
 config = init_config()
 
@@ -62,7 +57,6 @@ dataloader = DataLoader(
     drop_last=True,
     prefetch_factor=config.training.prefetch_factor,
     sampler=datasampler,
-    worker_init_fn=seed_worker,
 )
 dataloader_iter = iter(dataloader)
 
@@ -80,7 +74,6 @@ eval_dataloader = DataLoader(
     drop_last=True,
     prefetch_factor=config.training.prefetch_factor,
     sampler=datasampler,
-    worker_init_fn=seed_worker,
 )
 eval_dataloader_iter = iter(eval_dataloader)
 
