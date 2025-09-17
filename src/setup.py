@@ -225,7 +225,6 @@ def init_wandb_and_backup(config):
     # assert api_keys.wandb is not None, "Wandb API key not found in api key file"
 
     # WandB setup and login
-    os.environ["WANDB_API_KEY"] = "494cdef6ea0e61717cdb013ddd01864a58874cee"
 
     # WandB initialization
     config_copy = copy.deepcopy(config)
