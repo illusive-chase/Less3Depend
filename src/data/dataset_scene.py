@@ -20,6 +20,8 @@ class Dataset(Dataset):
                 with open(self.config.training.dataset_path, 'r') as f:
                     self.all_scene_paths = f.read().splitlines()
                 self.all_scene_paths = [path for path in self.all_scene_paths if path.strip()]
+                dataset_split = self.config.training.get('dataset_split', 1.0)
+                self.all_scene_paths = self.all_scene_paths[:int(len(self.all_scene_paths)*dataset_split)]
             elif mode == 'eval':
                 with open(self.config.training.eval_dataset_path, 'r') as f:
                     self.all_scene_paths = f.read().splitlines()
